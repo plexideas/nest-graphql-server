@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  role: [UserRole!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum UserRole {
+  User
+  Admin
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Auth {
+  refreshToken: String!
+  refreshTokenExpiresAt: Float!
+  accessToken: String!
+  accessTokenExpiresAt: Float!
+  user: User!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  count: Int!
+  isFavorite: Boolean!
+  type: String
+}
+
+type Query {
+  users: [User!]!
+  user: User!
+  products: [Product!]!
+  product(id: String!): Product!
+}
+
+type Mutation {
+  login(password: String!, email: String!): Auth!
+  refreshToken(refreshToken: String!): Auth!
+  logout(refreshToken: String!): Boolean!
+  signup(input: UserInput!): Auth!
+  createProduct(name: String!): Product!
+  updateProduct(input: ProductInput!, id: String!): Product!
+}
+
+input UserInput {
+  email: String!
+  password: String!
+}
+
+input ProductInput {
+  count: Int
+  isFavorite: Boolean
+}

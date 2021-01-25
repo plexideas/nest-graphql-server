@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    # Container settings
+    container_name: 'tintb_db'
+    image: 'postgres'
+    ports:
+      # DB Port
+      - 5432:5432
+    environment:
+      # DB Ccredentials
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      # DB NAME
+      POSTGRES_DB:
